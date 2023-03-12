@@ -19,6 +19,3 @@ class LoginPage:
         WebDriverWait(self.driver,5).until(EC.visibility_of_element_located((By.XPATH,self.login_xpath))).click()
 
 
-##################################################################
-
-
