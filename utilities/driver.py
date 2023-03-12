@@ -4,7 +4,7 @@ from selenium.webdriver.chrome.service import Service
 
 def get_chrome_driver():
     """please, pay attention to the chrome driver"""
-    chromedriver_path = "/Users/maayan/Downloads/Wed Drivers/chromedriver"
+    chromedriver_path = "C:/Webdriver/chromedriver.exe"
     #chromedriver_path = Fill in windows chrome drivers
     service = Service(executable_path=chromedriver_path)
     options = webdriver.ChromeOptions()
