@@ -1,4 +1,3 @@
-
 import unittest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -23,57 +22,6 @@ class Test_Store(unittest.TestCase):
 
     def tearDown(self):
         self.driver.quit()
-
-    def test_7_click_Home_btn(self):
-        self.driver.maximize_window()
-        self.driver.get('https://www.demoblaze.com/index.html')
-        c_page = Buttons(self.driver)
-        c_page.click_Home()
-        sleep(2)
-        assert self.driver.current_url == "https://www.demoblaze.com/index.html"
-
-    def test_8_click_Contact_btn(self):
-        self.driver.maximize_window()
-        self.driver.get('https://www.demoblaze.com/index.html')
-        c_page = Buttons(self.driver)
-        c_page.click_Contact()
-        sleep(2)
-        assert self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div").is_displayed()
-
-
-    def test_9_click_About_us_btn(self):
-        self.driver.maximize_window()
-        self.driver.get('https://www.demoblaze.com/index.html')
-        c_page = Buttons(self.driver)
-        c_page.click_About_us()
-        sleep(2)
-        assert self.driver.find_element(By.XPATH, "/html/body/div[4]/div/div").is_displayed()
-
-    def test_10_click_Cart_bnt(self):
-        self.driver.maximize_window()
-        self.driver.get('https://www.demoblaze.com/index.html')
-        c_page = Buttons(self.driver)
-        c_page.click_Cart()
-        sleep(2)
-        assert self.driver.current_url == "https://www.demoblaze.com/cart.html"
-
-    def test_11_click_Log_in_btn(self):
-        self.driver.maximize_window()
-        self.driver.get('https://www.demoblaze.com/index.html')
-        c_page = Buttons(self.driver)
-        c_page.click_Login()
-        sleep(2)
-        assert self.driver.find_element(By.XPATH , "/html/body/div[3]/div/div").is_displayed()
-
-
-    def test_12_click_Sigh_up_btn(self):
-        self.driver.maximize_window()
-        self.driver.get('https://www.demoblaze.com/index.html')
-        c_page = Buttons(self.driver)
-        c_page.click_Sighup()
-        sleep(2)
-        assert self.driver.find_element(By.XPATH , "/html/body/div[2]/div/div").is_displayed()
-
 
     def test_37_send_empty_message(self):
         self.driver.maximize_window()
@@ -121,7 +69,7 @@ class Test_Store(unittest.TestCase):
         WebDriverWait(self.driver, 5)
         c_page1.set_password("123")
         WebDriverWait(self.driver, 5)
-        c_page1.click_sigh_us_in_pop()
+        c_page1.click_sign_us_in_pop()
         sleep(2)
         alert = WebDriverWait(self.driver, 5).until(EC.alert_is_present())
         self.assertEqual(alert.text, "Sign up successful.")
@@ -137,7 +85,7 @@ class Test_Store(unittest.TestCase):
         WebDriverWait(self.driver, 5)
         c2_page.set_password("123")
         WebDriverWait(self.driver, 5)
-        c2_page.click_sigh_us_in_pop()
+        c2_page.click_sign_us_in_pop()
         sleep(2)
         alert = WebDriverWait(self.driver, 5).until(EC.alert_is_present())
         self.assertEqual(alert.text, "This user already exist.")
@@ -170,7 +118,7 @@ class Test_Store(unittest.TestCase):
         WebDriverWait(self.driver, 5)
         c_page1.set_password("123")
         WebDriverWait(self.driver, 5)
-        c_page1.click_sigh_us_in_pop()
+        c_page1.click_sign_us_in_pop()
         sleep(2)
         alert = WebDriverWait(self.driver, 5).until(EC.alert_is_present())
         if len(username) <= 10:
@@ -185,7 +133,7 @@ class Test_Store(unittest.TestCase):
         c_page.click_Sighup()
         WebDriverWait(self.driver, 5)
         c_page1 = Sigh_up(self.driver)
-        c_page1.click_sigh_us_in_pop()
+        c_page1.click_sign_us_in_pop()
         sleep(2)
         alert = WebDriverWait(self.driver, 5).until(EC.alert_is_present())
         self.assertEqual(alert.text, "Please fill out Username and Password.")

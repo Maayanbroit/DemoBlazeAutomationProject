@@ -54,29 +54,5 @@ class Buttons:
         WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.sigh_up_close_btn))).click()
 
 
-class Sigh_up:
-
-    user_name_text = "sign-username"
-    password_text = "sign-password"
-    sigh_up_xpath = "/html/body/div[2]/div/div/div[3]/button[2]"
-
-    def __init__(self,driver):
-        self.driver = driver
-
-    def set_username(self, username):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID, self.user_name_text))).send_keys(
-            username)
-        return username
-
-    def set_password(self, password):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID, self.password_text))).send_keys(
-            password)
-
-    def click_sigh_us_in_pop(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.sigh_up_xpath))).click()
-
-
-
-
 
 
