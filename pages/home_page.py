@@ -260,13 +260,13 @@ class Cart:
           WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.add_to_cart))).click()
 
       def click_cart_btn(self):
-          WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.cart_btn))).click()
+          WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, "/html/body/nav/div/div/ul/li[4]/a"))).click()
 
       def click_delete_btn(self):
           WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.delete_btn))).click()
 
       def click_place_order_btn(self):
-          WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.place_order_btn))).click()
+          WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, "/html/body/div[6]/div/div[2]/button"))).click()
 
 
 class Sign_up:
