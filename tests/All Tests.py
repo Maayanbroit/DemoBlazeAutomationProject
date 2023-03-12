@@ -352,7 +352,8 @@ class TestOH(unittest.TestCase):
         sleep(5)
         title_in_cart = WebDriverWait(self.driver, 5).until(
             EC.invisibility_of_element_located((By.XPATH, "/html/body/div[6]/div/div[1]/div/table/tbody/tr/td[2]")))
-        self.assertEqual(len(title_in_cart), 0)
+        assert title_in_cart
+
 
     def test_47_valid_order_without_login(self):
         valid_order = ValidOrder(self.driver)
