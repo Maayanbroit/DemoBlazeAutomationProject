@@ -10,5 +10,4 @@ def get_chrome_driver():
     options = webdriver.ChromeOptions()
     options.add_argument("--disable-extensions")
     driver = webdriver.Chrome(service=service, options=options)
-
     return driver
