@@ -3,9 +3,9 @@ import random
 import string
 # from selenium import webdriver
 # from selenium.webdriver.chrome.service import Service
-# from selenium.webdriver.common.action_chains import ActionChains
 # from selenium.webdriver.common.keys import Keys
-from utilities.driver import get_chrome_driver
+from utilities.chromedriver import get_chrome_driver
+from utilities.edgedriver import get_edge_driver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -24,6 +24,7 @@ class TestOH(unittest.TestCase):
     def setUp(self):
         try:
             self.driver = get_chrome_driver()
+            # self.driver = get_edge_driver()
             self.driver.maximize_window()
             self.driver.get('https://www.demoblaze.com/index.html')
             sleep(3)
@@ -35,9 +36,9 @@ class TestOH(unittest.TestCase):
         self.driver.quit()
 
     def test_1_valid_text_home_btn(self):
-        x = Buttons(self.driver)
+        x = Buttons(self.driver) # Create an instance of the Buttons class
         button = x.txt_home_btn()
-        button_text = button.text
+        button_text = button.text # Get the text of the button
         self.assertEqual(button_text, "Home")
 
     def test_2_valid_text_contact_btn(self):
@@ -59,6 +60,7 @@ class TestOH(unittest.TestCase):
         self.assertEqual(button_text, "Cart")
 
     def test_5_valid_text_log_in_btn(self):
+        # Test if the text of the log in button is correct
         x = Buttons(self.driver)
         button = x.txt_log_in_btn()
         button_text = button.text
@@ -75,18 +77,21 @@ class TestOH(unittest.TestCase):
         x = Buttons(self.driver)
         x.click_home()
         sleep(2)
+        # Check if the current URL is correct
         assert self.driver.current_url == "https://www.demoblaze.com/index.html"
 
     def test_8_click_Contact_btn(self):
         c_page = Buttons(self.driver)
         c_page.click_Contact()
         sleep(2)
+        # Check if the contact popup is displayed
         assert self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div").is_displayed()
 
     def test_9_click_About_us_btn(self):
         c_page = Buttons(self.driver)
         c_page.click_About_us()
         sleep(2)
+        # Check if the about us popup is displayed
         assert self.driver.find_element(By.XPATH, "/html/body/div[4]/div/div").is_displayed()
 
     def test_10_click_Cart_bnt(self):
@@ -117,24 +122,30 @@ class TestOH(unittest.TestCase):
         product_button = Buttons(self.driver)
         product_button.click_product()
         sleep(3)
+        # check if the current URL is the product page
         assert self.driver.current_url == 'https://www.demoblaze.com/prod.html?idp_=1'
 
     def test_15_product_title(self):
         x = Buttons(self.driver)
         external_title = x.txt_product_btn()
+        # Get the external text of the product button element
         external_title_text = external_title.text
         print(external_title_text)
         external_title.click()
         sleep(3)
-        inner_title = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="tbodyid"]/h2')))
+        # Get the inner text of the product button element
+        inner_title = WebDriverWait(self.driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH, '//*[@id="tbodyid"]/h2')))
         internal_title_text = inner_title.text
         print(internal_title_text)
         sleep(2)
+        #Check if the external and inner titles are equal
         assert external_title_text == internal_title_text
 
     def test_16_product_image(self):
         external_image = WebDriverWait(self.driver, 5).until(
             EC.visibility_of_element_located((By.XPATH, '//*[@id="tbodyid"]/div[1]/div/a/img')))
+        #get image source attribute
         external_image_src = external_image.get_attribute('src')
         external_image.click()
         inner_image = WebDriverWait(self.driver, 5).until(
@@ -142,6 +153,7 @@ class TestOH(unittest.TestCase):
         inner_image_src = inner_image.get_attribute('src')
         sleep(5)
         print(inner_image_src)
+        # check if the external and inner image sources are equal
         self.assertEqual(external_image_src, inner_image_src)
 
     def test_17_scroll_down_home_page(self):
@@ -191,6 +203,7 @@ class TestOH(unittest.TestCase):
     def test_21_next_button_displayed_previous_not(self):
         self.scroll = self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         sleep(5)
+        # check if next button is displayed and previous button not
         is_next_btn_display = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID, 'next2'))).is_displayed()
         is_previous_btn_display = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID, "prev2"))).is_displayed()
 
@@ -199,6 +212,7 @@ class TestOH(unittest.TestCase):
     def test_22_previous_button_displayed_next_not(self):
         self.scroll = self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         sleep(2)
+        # Click next button to go to the next image
         next_btn = WebDriverWait(self.driver, 5).until(
             EC.visibility_of_element_located((By.ID, 'next2')))
         next_btn.click()
@@ -206,19 +220,19 @@ class TestOH(unittest.TestCase):
         is_next_btn_display = next_btn.is_displayed()
         is_previous_btn_display = WebDriverWait(self.driver, 5).until(
             EC.visibility_of_element_located((By.ID, "prev2"))).is_displayed()
-
+        # Check if previous button is displayed and next button is not
         assert is_previous_btn_display == True and is_next_btn_display == False
 
     def test_27_image_bar_r_btn(self):
-        arrow_btn = Buttons(self.driver)
+        # click the right button in the image bar
         self.driver.find_element(By.XPATH, "/html/body/nav/div[2]/div/a[2]").click()
         sleep(1)
+        # Check if the first image is not the same as the second image
         image_1 = self.driver.find_element(By.XPATH, "/html/body/nav/div[2]/div/div/div[1]/img").is_displayed()
         image_2 = self.driver.find_element(By.XPATH, "/html/body/nav/div[2]/div/div/div[2]/img").is_displayed()
         self.assertNotEqual(image_1, image_2)
 
     def test_28_image_bar_l_btn(self):
-        arrow_btn = Buttons(self.driver)
         self.driver.find_element(By.XPATH, "/html/body/nav/div[2]/div/a[1]").click()
         sleep(1)
         image_1 = self.driver.find_element(By.XPATH, "/html/body/nav/div[2]/div/div/div[1]/img").is_displayed()
@@ -229,12 +243,14 @@ class TestOH(unittest.TestCase):
         sleep(5)
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         sleep(5)
+        # Check if the 'about us' text is displayed
         assert self.driver.find_element(By.XPATH, '/html/body/div[6]/div/div[1]').is_displayed()
 
     def test_30_get_in_touch_text(self):
         sleep(5)
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         sleep(5)
+        # Check if the 'get in touch' text is displayed
         assert self.driver.find_element(By.XPATH, '/html/body/div[6]/div/div[2]').is_displayed()
 
     def test_31_valid_new_message(self):
