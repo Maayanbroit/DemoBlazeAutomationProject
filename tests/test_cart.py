@@ -136,26 +136,26 @@ class TestOH(WebDriverSetup):
         assert title_in_cart
 
     def test_45_delete_details(self):
+        # Click the samsung_6s button
         self.cart_page.click_samsung_6s()
+        # Click the add cart button
         self.cart_page.click_add_cart()
-        sleep(5)
+        # Alert is displayed
         alert = WebDriverWait(self.driver, 5).until(EC.alert_is_present())
         alert.accept()
+        # Click the cart button
         self.cart_page.click_cart_btn()
-        sleep(5)
+        # Click the delete button
         self.cart_page.click_delete_btn()
-        sleep(5)
-        # assert self.driver.find_element(By.XPATH, '/html/body/div[6]').is_displayed()
         assert self.driver.find_element(By.XPATH, '/html/body/div[6]/div/div[2]').is_displayed()
 
     def test_46_place_order(self):
+        # Click the cart button
         self.cart_page.click_cart_btn()
-        sleep(3)
+        # Click the place order button
         self.cart_page.click_place_order_btn()
-        sleep(3)
-        element = WebDriverWait(self.driver, 5).until(
-            EC.invisibility_of_element_located((By.XPATH, "/html/body/div[3]/div/div")))
-        assert element
+        assert WebDriverWait(self.driver, 5).until(EC.invisibility_of_element_located((By.XPATH, "/html/body/div[3]/div/div")))
+
 
     def test_47_valid_order_without_login(self):
         self.cart_page.click_product()

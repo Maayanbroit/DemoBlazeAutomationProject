@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from locators1.home_locators import Buttons_home
+from time import sleep
 
 class Homepage:
 
@@ -61,3 +62,21 @@ class Homepage:
         WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, Buttons_home.sign_up_btn))).click()
     def click_logo(self):
         WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID, Buttons_home.logo_btn))).click()
+
+    def click_image_bar_r_btn(self):
+        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, Buttons_home.image_bar_r_btn))).click()
+
+    def click_image_bar_l_btn(self):
+         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, Buttons_home.image_bar_l_btn))).click()
+
+    def image_1(self):
+         image_1 = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, Buttons_home.image_1)))
+         return image_1
+
+    def image_2 (self):
+        image_2 = WebDriverWait(self.driver, 10).until( EC.visibility_of_element_located((By.XPATH, Buttons_home.image_2)))
+        return image_2
+
+    def image_3 (self):
+        image_3 = WebDriverWait(self.driver, 10).until( EC.visibility_of_element_located((By.XPATH, Buttons_home.image_3)))
+        return image_3
