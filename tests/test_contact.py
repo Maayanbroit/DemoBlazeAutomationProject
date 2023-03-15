@@ -62,6 +62,6 @@ class TestOH(WebDriverSetup):
     def test_37_send_empty_message(self):
         self.contact_page.click_contact_btn()
         self.contact_page.click_send_message()
-        sleep(2)
         alert = WebDriverWait(self.driver, 5).until(EC.alert_is_present())
+        # Check if a message appears "Details not filled in."
         self.assertEqual(alert.text, "Details not filled in.")
