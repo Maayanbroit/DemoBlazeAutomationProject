@@ -1,47 +1,36 @@
-
-
-
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from utilities.setup import WebDriverSetup
 from selenium.webdriver.common.by import By
 from time import sleep
 
-
 class TestOH(WebDriverSetup):
 
 
     def test_1_valid_text_home_btn(self):
         button = self.home_new_page.txt_home_btn()
-        button_text = button.text
-        self.assertEqual(button_text, "Home")
+        assert button.text == 'Home', f"Unexpected text: {button.text}"
 
     def test_2_valid_text_contact_btn(self):
         button = self.home_new_page.txt_contact_btn()
-        button_text = button.text
-        self.assertEqual(button_text, "Contact")
+        assert button.text == 'Contact us', f"Unexpected text: {button.text}"
 
     def test_3_valid_text_about_us_btn(self):
         button = self.home_new_page.txt_about_us_btn()
-        button_text = button.text
-        self.assertEqual(button_text, "About us")
+        assert button.text == 'About us', f"Unexpected text: {button.text}"
 
     def test_4_valid_text_cart_btn(self):
         button = self.home_new_page.txt_cart_btn()
-        button_text = button.text
-        self.assertEqual(button_text, "Cart")
+        assert button.text == 'Cart', f"Unexpected text: {button.text}"
 
     def test_5_valid_text_log_in_btn(self):
         # Test if the text of the log in button is correct
         button = self.home_new_page.txt_log_in_btn()
-        button_text = button.text
-        expected_text = 'Log in'
-        self.assertEqual(button_text, expected_text)
+        assert button.text == 'Log in', f"Unexpected text: {button.text}"
 
     def test_6_valid_text_sign_up_btn(self):
         button = self.home_new_page.txt_sign_up_btn()
-        button_text = button.text
-        self.assertEqual(button_text, "Sign up")
+        assert button.text == 'Sign up', f"Unexpected text: {button.text}"
 
     def test_7_click_Home_btn(self):
         self.home_new_page.click_home()
@@ -123,41 +112,32 @@ class TestOH(WebDriverSetup):
         sleep(5)
         assert self.driver.execute_script("return window.scrollY") > 0, "Scrolling down the page not working"
 
+#18 not working. text?!
     def test_18_valid_text_sign_ip_btn(self):
-        external_title = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, '/html/body/div[5]/div/div[2]/div/div[1]/div/div/p')))
-        external_title_text = external_title.text
-        external_btn = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, '//*[@id="tbodyid"]/div[1]/div/div/h4/a')))
-        external_btn.click()
-        inner_title = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, '/html/body/div[5]/div/div[2]/div[1]/div/div/p')))
-        inner_title_text = inner_title.text
-        self.assertEqual(external_title_text, inner_title_text)
+        description = self.home_new_page.txt_description().text
+        self.home_new_page.click_product_btn()
+        product_description = self.first_product_on_the_left_page.txt_product_description.text
+        sleep(10)
+        assert description.text in product_description.text
+
+# 19 not working. text?!
 
     def test_19_valid_previous_btn(self):
-        left_corn_product = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/div[5]/div/div[2]/div/div[1]/div/div/h4/a")))
-        left_corn_product_text = left_corn_product.text
-        prev_btn = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, '/html/body/div[5]/div/div[2]/form/ul/li[1]/button')))
-        prev_btn.click()
+        txt_product_btn = self.home_new_page.txt_product_btn
+        self.home_new_page.click_previous_btn()
         sleep(5)
-        left_corn_product_after = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, '/html/body/div[5]/div/div[2]/div/div[1]/div/div/h4/a')))
-        left_corn_product_after_text = left_corn_product_after.text
-        self.assertNotEqual(left_corn_product_text, left_corn_product_after_text)
+        left_corn_product_after = self.home_new_page.txt_product_btn_2nd_home_page
+        self.assertNotEqual(txt_product_btn, left_corn_product_after)
+
+# 20 not working. text?!
 
     def test_20_valid_next_btn(self):
-        left_corn_product = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/div[5]/div/div[2]/div/div[1]/div/div/h4/a")))
+        left_corn_product = self.home_new_page.txt_product_btn_2nd_home_page
         left_corn_product_text = left_corn_product.text
-        next_btn = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, '/html/body/div[5]/div/div[2]/form/ul/li[2]/button')))
+        next_btn = self.home_new_page.next_btn
         next_btn.click()
         sleep(5)
-        left_corn_product_after = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, '/html/body/div[5]/div/div[2]/div/div[1]/div/div/h4/a')))
+        left_corn_product_after = self.home_new_page.txt_product_btn_next_home_page
         left_corn_product_after_text = left_corn_product_after.text
         self.assertNotEqual(left_corn_product_text, left_corn_product_after_text)
 

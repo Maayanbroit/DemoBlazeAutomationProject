@@ -20,6 +20,19 @@ class Cartpage:
     def click_product(self):
         WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, Cart_Locators.product_btn))).click()
 
+    def txt_product(self):
+        title = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, Cart_Locators.product_btn)))
+        return title
+    def txt_product_2(self):
+        title = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, Cart_Locators.product_2_btn)))
+        return title
+    def txt_product_3(self):
+        title = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, Cart_Locators.product_3_btn)))
+        return title
+    def txt_price_in_cart(self):
+        title = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, Cart_Locators.price_in_cart)))
+        return title
+
     def click_add_cart(self):
         WebDriverWait(self.driver, 5).until(
             EC.visibility_of_element_located((By.XPATH,  Cart_Locators.add_cart_btn))).click()

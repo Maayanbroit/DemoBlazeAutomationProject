@@ -1,0 +1,20 @@
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from locators1.first_product_on_the_left_locators import Locators_product
+
+class Product:
+
+    def __init__(self, driver):
+        self.driver = driver
+
+    def txt_product_description(self):
+        title = WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH, Locators_product.product_description)))
+        return title
+
+    def txt_add_to_cart(self):
+        title = WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH, Locators_product.add_to_cart)))
+        return title
+

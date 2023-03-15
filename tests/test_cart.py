@@ -3,80 +3,62 @@ from selenium.webdriver.support import expected_conditions as EC
 from utilities.setup import WebDriverSetup
 from selenium.webdriver.common.by import By
 from time import sleep
+from selenium.webdriver.common.action_chains import ActionChains
+
 
 
 class TestOH(WebDriverSetup):
 
-
+# Click not working?
     def test_40_add_prod_to_cart_valid(self):
-        left_corn_product = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/div[5]/div/div[2]/div/div[1]/div/div/h4/a")))
+        left_corn_product = self.home_new_page.txt_product_btn
         left_corn_product_text = left_corn_product.text
         left_corn_product.click()
-        sleep(5)
-        add_to_cart_btn = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/div[5]/div/div[2]/div[2]/div/a")))
+        add_to_cart_btn = self.first_product_on_the_left_page.txt_add_to_cart
         add_to_cart_btn.click()
-        sleep(5)
         alert = self.driver.switch_to.alert
         alert.accept()
-        cart_btn = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/nav/div/div/ul/li[4]/a")))
+        cart_btn = self.home_new_page.cart_btn
         cart_btn.click()
-        sleep(5)
-        title_in_cart = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/div[6]/div/div[1]/div/table/tbody/tr/td[2]")))
+        title_in_cart = self.cart_page.txt_product
         title_in_cart_text = title_in_cart.text
         self.assertEqual(left_corn_product_text, title_in_cart_text)
 
     def test_41_add_3times_prod_to_cart_valid(self):
-        left_corn_product = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/div[5]/div/div[2]/div/div[1]/div/div/h4/a")))
+        left_corn_product = self.home_new_page.product_btn
         left_corn_product_text = left_corn_product.text
         left_corn_product.click()
-        sleep(5)
-        add_to_cart_btn = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/div[5]/div/div[2]/div[2]/div/a")))
-
+        add_to_cart_btn = self.first_product_on_the_left_page.add_to_cart
         add_to_cart_btn.click()
-        sleep(5)
+        alert = self.driver.switch_to.alert
+        alert.accept()
+        add_to_cart_btn.click()
         alert = self.driver.switch_to.alert
         alert.accept()
         add_to_cart_btn.click()
         sleep(5)
         alert = self.driver.switch_to.alert
         alert.accept()
-        add_to_cart_btn.click()
-        sleep(5)
-        alert = self.driver.switch_to.alert
-        alert.accept()
-
-        cart_btn = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/nav/div/div/ul/li[4]/a")))
+        cart_btn = self.home_new_page.cart_btn
         cart_btn.click()
         sleep(5)
-        title_in_cart_1 = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/div[6]/div/div[1]/div/table/tbody/tr/td[2]")))
+        title_in_cart_1 = self.cart_page.txt_product
         title_in_cart_text_1 = title_in_cart_1.text
         self.assertEqual(left_corn_product_text, title_in_cart_text_1)
 
-        title_in_cart_2 = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/div[6]/div/div[1]/div/table/tbody/tr[2]/td[2]")))
+        title_in_cart_2 = self.cart_page.txt_product_2()
         title_in_cart_text_2 = title_in_cart_2.text
         self.assertEqual(left_corn_product_text, title_in_cart_text_2)
 
-        title_in_cart_3 = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "//html/body/div[6]/div/div[1]/div/table/tbody/tr[3]/td[2]")))
+        title_in_cart_3 = self.cart_page.txt_product_3()
         title_in_cart_text_3 = title_in_cart_3.text
         self.assertEqual(left_corn_product_text, title_in_cart_text_3)
 
     def test_42_prod_add_popup_valid(self):
-        left_corn_product = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/div[5]/div/div[2]/div/div[1]/div/div/h4/a")))
+        left_corn_product = self.home_new_page.txt_product_btn
         left_corn_product.click()
         sleep(5)
-        add_to_cart_btn = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/div[5]/div/div[2]/div[2]/div/a")))
+        add_to_cart_btn = self.first_product_on_the_left_page.txt_add_to_cart
         add_to_cart_btn.click()
         alert = WebDriverWait(self.driver, 5).until(EC.alert_is_present())
         self.assertEqual(alert.text, "Product added")
@@ -85,54 +67,41 @@ class TestOH(WebDriverSetup):
         alert.accept()
 
     def test_43_prod_price_valid(self):
-        left_corn_product = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/div[5]/div/div[2]/div/div[1]/div/div/h4/a")))
-        left_corn_product_price = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/div[5]/div/div[2]/div/div[1]/div/div/h5")))
+        left_corn_product = self.home_new_page.txt_product_btn
+        left_corn_product_price = self.home_new_page.txt_product_price
         left_corn_product_price = left_corn_product_price.text
         left_corn_product.click()
         sleep(5)
-        add_to_cart_btn = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/div[5]/div/div[2]/div[2]/div/a")))
+        add_to_cart_btn = self.first_product_on_the_left_page.txt_add_to_cart
         add_to_cart_btn.click()
         sleep(5)
         alert = self.driver.switch_to.alert
         alert.accept()
-        cart_btn = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/nav/div/div/ul/li[4]/a")))
+        cart_btn = self.home_new_page.txt_cart_btn
         cart_btn.click()
         sleep(5)
-        price_in_cart = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/div[6]/div/div[1]/div/table/tbody/tr/td[3]")))
+        price_in_cart = self.cart_page.txt_price_in_cart
         price_in_cart = price_in_cart.text
         self.assertEqual(price_in_cart, left_corn_product_price)
 
     def test_44_del_prod_from_cart_valid(self):
-        left_corn_product = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/div[5]/div/div[2]/div/div[1]/div/div/h4/a")))
+        left_corn_product = self.home_new_page.txt_product_btn
         left_corn_product_text = left_corn_product.text
-        left_corn_product.click()
-        sleep(5)
-        add_to_cart_btn = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/div[5]/div/div[2]/div[2]/div/a")))
+        self.home_new_page.click_product_btn()
+        add_to_cart_btn = self.first_product_on_the_left_page.txt_add_to_cart
         add_to_cart_btn.click()
         sleep(5)
         alert = self.driver.switch_to.alert
         alert.accept()
-        cart_btn = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/nav/div/div/ul/li[4]/a")))
-        cart_btn.click()
+        cart_btn = self.home_new_page.txt_cart_btn
+        self.home_new_page.click_cart_btn()
         sleep(5)
-        title_in_cart = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/div[6]/div/div[1]/div/table/tbody/tr/td[2]")))
+        title_in_cart = self.cart_page.txt_product
         title_in_cart_text = title_in_cart.text
         self.assertEqual(left_corn_product_text, title_in_cart_text)
-        delete_btn = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/div[6]/div/div[1]/div/table/tbody/tr/td[4]/a")))
-        delete_btn.click()
+        self.cart_page.click_delete_btn()
         sleep(5)
-        title_in_cart = WebDriverWait(self.driver, 5).until(
-            EC.invisibility_of_element_located((By.XPATH, "/html/body/div[6]/div/div[1]/div/table/tbody/tr/td[2]")))
+        title_in_cart = self.cart_page.product_btn
         assert title_in_cart
 
     def test_45_delete_details(self):

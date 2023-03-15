@@ -3,7 +3,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 # from locators.login_page_locators import LoginLocators
 
-
 class LoginPage:
 
     username_text = 'loginusername'
@@ -135,8 +134,6 @@ class Buttons:
 
     def click_sign_up_close(self):
         WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.sign_up_close_btn))).click()
-
-
 
 
 class ValidOrder:

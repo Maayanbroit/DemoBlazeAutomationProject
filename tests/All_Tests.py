@@ -18,6 +18,7 @@ from pages.home_page import Sign_up
 from pages.home_page import Cart
 from pages.home_page import Contact
 from pages.home_page import Log_in
+import HtmlTestRunner
 
 
 class TestOH(unittest.TestCase):
@@ -76,14 +77,12 @@ class TestOH(unittest.TestCase):
     def test_7_click_Home_btn(self):
         x = Buttons(self.driver)
         x.click_home()
-        sleep(2)
         # Check if the current URL is correct
         assert self.driver.current_url == "https://www.demoblaze.com/index.html"
 
     def test_8_click_Contact_btn(self):
         c_page = Buttons(self.driver)
         c_page.click_Contact()
-        sleep(2)
         # Check if the contact popup is displayed
         assert self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div").is_displayed()
 
@@ -730,4 +729,6 @@ class TestOH(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    """Please fill in desired output folder"""
+    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(
+        output='...'))
