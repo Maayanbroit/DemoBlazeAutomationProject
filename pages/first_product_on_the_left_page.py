@@ -24,3 +24,14 @@ class Product:
         WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located((By.XPATH, Locators_product.add_to_cart))).click()
         sleep(5)
+    def inner_txt_product_btn(self):
+        title = WebDriverWait(self.driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH, Locators_product.inner_product_btn)))
+        return title
+
+    def inner_product_image(self):
+        image = WebDriverWait(self.driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH, Locators_product.inner_image)))
+        return image
+
+

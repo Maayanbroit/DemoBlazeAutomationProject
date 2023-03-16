@@ -9,6 +9,7 @@ from pages.contact_page import Contactpage
 from pages.about_us_page import About_As_page
 from pages.login_page import LoginPage
 from pages.sign_up_page import Sign_Up_Page
+from pages.first_product_on_the_left_page import Product
 from selenium.webdriver.chrome.options import Options
 from pages.first_product_on_the_left_page import Product
 

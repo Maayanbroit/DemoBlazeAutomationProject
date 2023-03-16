@@ -14,7 +14,6 @@ class Buttons_home:
     previous_btn = '/html/body/div[5]/div/div[2]/form/ul/li[1]/button'
     next_btn = '/html/body/div[5]/div/div[2]/form/ul/li[2]/button'
     #Our product for testing is the samsung s6 on the front page
-    product_btn = '//*[@id="tbodyid"]/div[1]/div/div/h4/a'
 
 
     image_bar_r_btn = "/html/body/nav/div[2]/div/a[2]"
@@ -23,3 +22,9 @@ class Buttons_home:
     image_2 = "/html/body/nav/div[2]/div/div/div[2]/img"
     image_3 = "/html/body/nav/div[2]/div/div/div[3]/img"
 
+
+    external_product_btn = '//*[@id="tbodyid"]/div[1]/div/div/h4/a'
+    external_image = '//*[@id="tbodyid"]/div[1]/div/a/img'
+    #change to ID
+    next_btn = 'next2'
+    previous_btn = 'prev2'

@@ -64,50 +64,40 @@ class TestOH(WebDriverSetup):
 
     def test_13_top_logo_redirect_home(self):
         self.home_new_page.click_logo()
-        sleep(5)
         assert self.driver.current_url == 'https://www.demoblaze.com/index.html'
 
     def test_14_redirect_to_view_product_page(self):
         self.home_new_page.click_product()
-        sleep(3)
         # check if the current URL is the product page
         assert self.driver.current_url == 'https://www.demoblaze.com/prod.html?idp_=1'
 
     def test_15_product_title(self):
-        external_title = self.home_new_page.txt_product_btn()
+        external_title = self.home_new_page.external_txt_product_btn()
         # Get the external text of the product button element
         external_title_text = external_title.text
-        print(external_title_text)
         external_title.click()
-        sleep(3)
         # Get the inner text of the product button element
-        inner_title = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, '//*[@id="tbodyid"]/h2')))
-        internal_title_text = inner_title.text
-        print(internal_title_text)
-        sleep(2)
+        inner_title = self.first_product_on_the_left_page.inner_txt_product_btn()
         #Check if the external and inner titles are equal
-        assert external_title_text == internal_title_text
+        assert external_title_text == inner_title.text
+        print(external_title_text ,'\n', inner_title.text)
 
     def test_16_product_image(self):
-        external_image = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, '//*[@id="tbodyid"]/div[1]/div/a/img')))
+        external_image = self.home_new_page.external_product_image()
         #get image source attribute
         external_image_src = external_image.get_attribute('src')
         external_image.click()
-        inner_image = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, '//*[@id="imgp"]/div/img')))
+        inner_image = self.first_product_on_the_left_page.inner_product_image()
         inner_image_src = inner_image.get_attribute('src')
-        sleep(5)
-        print(inner_image_src)
         # check if the external and inner image sources are equal
         self.assertEqual(external_image_src, inner_image_src)
 
+
     def test_17_scroll_down_home_page(self):
-        sleep(5)
-        scroll = self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        self.scroll = self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         sleep(5)
         assert self.driver.execute_script("return window.scrollY") > 0, "Scrolling down the page not working"
+
 
     def test_18_valid_text_sign_ip_btn(self):
         description = self.home_new_page.txt_description().text
@@ -130,28 +120,24 @@ class TestOH(WebDriverSetup):
         left_corn_product_after = self.home_new_page.txt_product_btn().text
         self.assertNotEqual(left_corn_product, left_corn_product_after)
 
+
     def test_21_next_button_displayed_previous_not(self):
         self.scroll = self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        sleep(5)
         # check if next button is displayed and previous button not
-        is_next_btn_display = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID, 'next2'))).is_displayed()
-        is_previous_btn_display = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID, "prev2"))).is_displayed()
-
-        assert is_previous_btn_display == False and is_next_btn_display == True
+        is_next_btn_displayed = self.home_new_page.next_product_btn
+        is_previous_btn_displayed = self.home_new_page.previous_product_btn
+        assert is_previous_btn_displayed == False and is_next_btn_displayed == True
 
     def test_22_previous_button_displayed_next_not(self):
         self.scroll = self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        sleep(2)
         # Click next button to go to the next image
-        next_btn = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.ID, 'next2')))
-        next_btn.click()
-        sleep(2)
-        is_next_btn_display = next_btn.is_displayed()
-        is_previous_btn_display = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.ID, "prev2"))).is_displayed()
+        is_next_btn_display = self.home_new_page.next_product_btn_click()
+        sleep(5)
+        is_previous_btn_displayed = self.home_new_page.previous_product_btn()
+        next_btn = self.home_new_page.next_product_btn()
         # Check if previous button is displayed and next button is not
-        assert is_previous_btn_display == True and is_next_btn_display == False
+        assert is_previous_btn_displayed == True and next_btn == False
+
 
     def test_27_image_bar_r_btn(self):
         # click the right button in the image bar

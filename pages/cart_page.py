@@ -74,3 +74,15 @@ class Cartpage:
 
     def fill_year(self, year):
         WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID, Cart_Locators.year_field))).send_keys(year)
+
+    def fill_place_order_fields(self):
+        self.click_cart_btn()
+        self.click_place_order_btn()
+        self.fill_name('Shiran')
+        self.fill_country('Israel')
+        self.fill_city('Kfar Yona')
+        self.fill_card('552211')
+        self.fill_month('5')
+        self.fill_year('2030')
+        self.click_purchase()
+
