@@ -155,30 +155,30 @@ class TestOH(WebDriverSetup):
 
     def test_27_image_bar_r_btn(self):
         # click the right button in the image bar
-        self.driver.find_element(By.XPATH, "/html/body/nav/div[2]/div/a[2]").click()
-        sleep(1)
+        self.home_new_page.click_image_bar_r_btn()
         # Check if the first image is not the same as the second image
-        image_1 = self.driver.find_element(By.XPATH, "/html/body/nav/div[2]/div/div/div[1]/img").is_displayed()
-        image_2 = self.driver.find_element(By.XPATH, "/html/body/nav/div[2]/div/div/div[2]/img").is_displayed()
+        image_1 = self.home_new_page.image_1()
+        image_2 = self.home_new_page.image_2()
+        sleep(3)
         self.assertNotEqual(image_1, image_2)
 
     def test_28_image_bar_l_btn(self):
-        self.driver.find_element(By.XPATH, "/html/body/nav/div[2]/div/a[1]").click()
-        sleep(1)
-        image_1 = self.driver.find_element(By.XPATH, "/html/body/nav/div[2]/div/div/div[1]/img").is_displayed()
-        image_3 = self.driver.find_element(By.XPATH, "/html/body/nav/div[2]/div/div/div[3]/img").is_displayed()
+        # click the left button in the image bar
+        self.home_new_page.click_image_bar_l_btn()
+        # Check if the first image is not the same as the second image
+        image_1 = self.home_new_page.image_1()
+        image_3 = self.home_new_page.image_3()
+        sleep(3)
         self.assertNotEqual(image_1, image_3)
 
     def test_29_about_as_text(self):
-        sleep(5)
+        # Scroll down the page to find the text
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        sleep(5)
         # Check if the 'about us' text is displayed
         assert self.driver.find_element(By.XPATH, '/html/body/div[6]/div/div[1]').is_displayed()
 
     def test_30_get_in_touch_text(self):
-        sleep(5)
+        # Scroll down the page to find the text
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        sleep(5)
         # Check if the 'get in touch' text is displayed
         assert self.driver.find_element(By.XPATH, '/html/body/div[6]/div/div[2]').is_displayed()

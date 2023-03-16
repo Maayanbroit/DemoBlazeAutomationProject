@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from locators1.cart_locators import Cart_Locators
+from time import sleep
 
 class Cartpage:
 
@@ -14,8 +15,9 @@ class Cartpage:
             EC.visibility_of_element_located((By.XPATH, Cart_Locators.cart_btn))).click()
 
     def click_place_order_btn(self):
-        WebDriverWait(self.driver, 5).until(
+        WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located((By.XPATH, Cart_Locators.place_order_btn))).click()
+        sleep(3)
 
     def click_product(self):
         WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, Cart_Locators.product_btn))).click()
@@ -48,7 +50,7 @@ class Cartpage:
             EC.visibility_of_element_located((By.XPATH, Cart_Locators.purchase_btn))).is_enabled()
 
     def click_delete_btn(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, Cart_Locators.delete_btn))).click()
+        WebDriverWait(self.driver,10).until(EC.visibility_of_element_located((By.XPATH, Cart_Locators.delete_btn))).click()
 
     def click_samsung_6s(self):
         WebDriverWait(self.driver, 5).until(
