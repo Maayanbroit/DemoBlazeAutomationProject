@@ -62,7 +62,7 @@ class TestOH(WebDriverSetup):
         if len(x) <= 256:
             self.assertEqual(alert.text, "Thank you for the message!!")
         else:
-            self.assertEqual(alert.text, "you need a meximum of 256 characters in the message.")
+            self.assertEqual(alert.text, "you need a maximum of 256 characters in the message.")
 
     def test_37_send_empty_message(self):
         self.contact_page.click_contact_btn()
