@@ -24,7 +24,7 @@ class Contactpage:
 
       def click_send_message(self):
           WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, ContactLocators.send_message_btn))).click()
-
+          WebDriverWait(self.driver, 5)
 
       def click_close_btn(self):
           WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, ContactLocators.close_btn))).click()

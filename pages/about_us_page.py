@@ -11,11 +11,14 @@ class About_As_page:
 
 
     def click_About_us(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, About_As_Locators.about_us_btn))).click()
-
+        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, About_As_Locators.about_us_btn))).click()
+        WebDriverWait(self.driver, 10)
 
     def click_play_video(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, About_As_Locators.play_video_btn))).click()
+        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, About_As_Locators.play_video_btn))).click()
+        WebDriverWait(self.driver, 10)
 
     def click_about_us_close(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, About_As_Locators.about_us_close_btn))).click()
+        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, About_As_Locators.about_us_close_btn))).click()
+        WebDriverWait(self.driver, 10)
+

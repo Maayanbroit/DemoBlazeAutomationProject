@@ -24,7 +24,7 @@ class TestOH(WebDriverSetup):
         assert button.text == 'Cart', f"Unexpected text: {button.text}"
 
     def test_5_valid_text_log_in_btn(self):
-        # Test if the text of the log in button is correct
+        # Test if the text of the login button is correct
         button = self.home_new_page.txt_log_in_btn()
         assert button.text == 'Log in', f"Unexpected text: {button.text}"
 
@@ -34,35 +34,32 @@ class TestOH(WebDriverSetup):
 
     def test_7_click_Home_btn(self):
         self.home_new_page.click_home()
-        sleep(2)
         # Check if the current URL is correct
         assert self.driver.current_url == "https://www.demoblaze.com/index.html"
 
     def test_8_click_Contact_btn(self):
-        self.home_new_page.click_Contact()
-        sleep(2)
+        self.home_new_page.click_contact()
         # Check if the contact popup is displayed
         assert self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div").is_displayed()
 
     def test_9_click_About_us_btn(self):
-        self.home_new_page.click_About_us()
-        sleep(2)
+        self.home_new_page.click_about_us()
         # Check if the about us popup is displayed
         assert self.driver.find_element(By.XPATH, "/html/body/div[4]/div/div").is_displayed()
 
     def test_10_click_Cart_bnt(self):
-        self.home_new_page.click_Cart()
-        sleep(2)
+        self.home_new_page.click_cart()
+        # Check if the current URL is correct
         assert self.driver.current_url == "https://www.demoblaze.com/cart.html"
 
     def test_11_click_Log_in_btn(self):
-        self.home_new_page.click_Login()
-        sleep(2)
+        self.home_new_page.click_login_btn()
+        # Check if the about us popup is displayed
         assert self.driver.find_element(By.XPATH, "/html/body/div[3]/div/div").is_displayed()
 
     def test_12_click_Sign_up_btn(self):
-        self.home_new_page.click_Sign_up()
-        sleep(2)
+        self.home_new_page.click_signup()
+        # Check if the about us popup is displayed
         assert self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div").is_displayed()
 
     def test_13_top_logo_redirect_home(self):
