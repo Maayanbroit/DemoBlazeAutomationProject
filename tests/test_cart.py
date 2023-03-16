@@ -9,100 +9,68 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 class TestOH(WebDriverSetup):
 
-# Click not working?
     def test_40_add_prod_to_cart_valid(self):
-        left_corn_product = self.home_new_page.txt_product_btn
-        left_corn_product_text = left_corn_product.text
-        left_corn_product.click()
-        add_to_cart_btn = self.first_product_on_the_left_page.txt_add_to_cart
-        add_to_cart_btn.click()
+        txt_product_btn = self.home_new_page.txt_product_btn().text
+        self.home_new_page.click_product_btn()
+        self.first_product_on_the_left_page.click_add_to_cart()
         alert = self.driver.switch_to.alert
         alert.accept()
-        cart_btn = self.home_new_page.cart_btn
-        cart_btn.click()
-        title_in_cart = self.cart_page.txt_product
-        title_in_cart_text = title_in_cart.text
-        self.assertEqual(left_corn_product_text, title_in_cart_text)
+        self.home_new_page.click_cart()
+        title_in_cart = self.cart_page.txt_product().text
+        self.assertEqual(txt_product_btn, title_in_cart)
 
     def test_41_add_3times_prod_to_cart_valid(self):
-        left_corn_product = self.home_new_page.product_btn
-        left_corn_product_text = left_corn_product.text
-        left_corn_product.click()
-        add_to_cart_btn = self.first_product_on_the_left_page.add_to_cart
-        add_to_cart_btn.click()
+        txt_product_btn_1 = self.home_new_page.txt_product_btn().text
+        self.home_new_page.click_product_btn()
+        self.first_product_on_the_left_page.click_add_to_cart()
         alert = self.driver.switch_to.alert
         alert.accept()
-        add_to_cart_btn.click()
+        self.first_product_on_the_left_page.click_add_to_cart()
         alert = self.driver.switch_to.alert
         alert.accept()
-        add_to_cart_btn.click()
-        sleep(5)
+        self.first_product_on_the_left_page.click_add_to_cart()
         alert = self.driver.switch_to.alert
         alert.accept()
-        cart_btn = self.home_new_page.cart_btn
-        cart_btn.click()
-        sleep(5)
-        title_in_cart_1 = self.cart_page.txt_product
-        title_in_cart_text_1 = title_in_cart_1.text
-        self.assertEqual(left_corn_product_text, title_in_cart_text_1)
+        self.home_new_page.click_cart()
+        title_in_cart_1 = self.cart_page.txt_product().text
+        self.assertEqual(txt_product_btn_1, title_in_cart_1)
 
-        title_in_cart_2 = self.cart_page.txt_product_2()
-        title_in_cart_text_2 = title_in_cart_2.text
-        self.assertEqual(left_corn_product_text, title_in_cart_text_2)
+        title_in_cart_2 = self.cart_page.txt_product_2().text
+        self.assertEqual(txt_product_btn_1, title_in_cart_2)
 
-        title_in_cart_3 = self.cart_page.txt_product_3()
-        title_in_cart_text_3 = title_in_cart_3.text
-        self.assertEqual(left_corn_product_text, title_in_cart_text_3)
+        title_in_cart_3 = self.cart_page.txt_product_3().text
+        self.assertEqual(txt_product_btn_1, title_in_cart_3)
 
     def test_42_prod_add_popup_valid(self):
-        left_corn_product = self.home_new_page.txt_product_btn
-        left_corn_product.click()
-        sleep(5)
-        add_to_cart_btn = self.first_product_on_the_left_page.txt_add_to_cart
-        add_to_cart_btn.click()
+        self.home_new_page.click_product_btn()
+        self.first_product_on_the_left_page.click_add_to_cart()
         alert = WebDriverWait(self.driver, 5).until(EC.alert_is_present())
         self.assertEqual(alert.text, "Product added")
-        sleep(5)
         alert = self.driver.switch_to.alert
         alert.accept()
 
     def test_43_prod_price_valid(self):
-        left_corn_product = self.home_new_page.txt_product_btn
-        left_corn_product_price = self.home_new_page.txt_product_price
-        left_corn_product_price = left_corn_product_price.text
-        left_corn_product.click()
-        sleep(5)
-        add_to_cart_btn = self.first_product_on_the_left_page.txt_add_to_cart
-        add_to_cart_btn.click()
-        sleep(5)
+        left_corn_product_price = self.home_new_page.txt_product_price().text
+        self.home_new_page.click_product_btn()
+        self.first_product_on_the_left_page.click_add_to_cart()
         alert = self.driver.switch_to.alert
         alert.accept()
-        cart_btn = self.home_new_page.txt_cart_btn
-        cart_btn.click()
-        sleep(5)
-        price_in_cart = self.cart_page.txt_price_in_cart
-        price_in_cart = price_in_cart.text
+        self.home_new_page.click_cart()
+        price_in_cart = self.cart_page.txt_price_in_cart().text
         self.assertEqual(price_in_cart, left_corn_product_price)
 
     def test_44_del_prod_from_cart_valid(self):
-        left_corn_product = self.home_new_page.txt_product_btn
-        left_corn_product_text = left_corn_product.text
+        left_corn_product = self.home_new_page.txt_product_btn().text
         self.home_new_page.click_product_btn()
-        add_to_cart_btn = self.first_product_on_the_left_page.txt_add_to_cart
-        add_to_cart_btn.click()
-        sleep(5)
+        self.first_product_on_the_left_page.click_add_to_cart()
         alert = self.driver.switch_to.alert
         alert.accept()
-        cart_btn = self.home_new_page.txt_cart_btn
-        self.home_new_page.click_cart_btn()
-        sleep(5)
-        title_in_cart = self.cart_page.txt_product
-        title_in_cart_text = title_in_cart.text
-        self.assertEqual(left_corn_product_text, title_in_cart_text)
+        self.home_new_page.click_cart()
+        title_in_cart = self.cart_page.txt_product().text
+        self.assertEqual(left_corn_product, title_in_cart)
         self.cart_page.click_delete_btn()
         sleep(5)
-        title_in_cart = self.cart_page.product_btn
-        assert title_in_cart
+        assert self.cart_page.txt_product_invisibility()
 
     def test_45_delete_details(self):
         self.cart_page.click_samsung_6s()

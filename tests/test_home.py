@@ -112,34 +112,26 @@ class TestOH(WebDriverSetup):
         sleep(5)
         assert self.driver.execute_script("return window.scrollY") > 0, "Scrolling down the page not working"
 
-#18 not working. text?!
     def test_18_valid_text_sign_ip_btn(self):
         description = self.home_new_page.txt_description().text
         self.home_new_page.click_product_btn()
-        product_description = self.first_product_on_the_left_page.txt_product_description.text
         sleep(10)
-        assert description.text in product_description.text
-
-# 19 not working. text?!
+        product_description = self.first_product_on_the_left_page.txt_product_description().text
+        self.assertEqual(description, product_description)
 
     def test_19_valid_previous_btn(self):
-        txt_product_btn = self.home_new_page.txt_product_btn
+        txt_product_btn = self.home_new_page.txt_product_btn().text
         self.home_new_page.click_previous_btn()
         sleep(5)
-        left_corn_product_after = self.home_new_page.txt_product_btn_2nd_home_page
+        left_corn_product_after = self.home_new_page.txt_product_btn().text
         self.assertNotEqual(txt_product_btn, left_corn_product_after)
 
-# 20 not working. text?!
-
     def test_20_valid_next_btn(self):
-        left_corn_product = self.home_new_page.txt_product_btn_2nd_home_page
-        left_corn_product_text = left_corn_product.text
-        next_btn = self.home_new_page.next_btn
-        next_btn.click()
+        left_corn_product = self.home_new_page.txt_product_btn().text
+        self.home_new_page.next_btn_click()
         sleep(5)
-        left_corn_product_after = self.home_new_page.txt_product_btn_next_home_page
-        left_corn_product_after_text = left_corn_product_after.text
-        self.assertNotEqual(left_corn_product_text, left_corn_product_after_text)
+        left_corn_product_after = self.home_new_page.txt_product_btn().text
+        self.assertNotEqual(left_corn_product, left_corn_product_after)
 
     def test_21_next_button_displayed_previous_not(self):
         self.scroll = self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")

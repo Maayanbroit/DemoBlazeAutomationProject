@@ -60,7 +60,7 @@ class Homepage:
         return title
 
     def txt_description(self):
-        title = WebDriverWait(self.driver, 5).until(
+        title = WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located((By.XPATH, Buttons_home.product_descreption)))
         return title
 
@@ -84,3 +84,6 @@ class Homepage:
     def click_previous_btn(self):
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, Buttons_home.previous_btn))).click()
 
+    def next_btn_click(self):
+        title = WebDriverWait(self.driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH, Buttons_home.next_btn))).click()

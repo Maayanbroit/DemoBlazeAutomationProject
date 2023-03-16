@@ -727,8 +727,5 @@ class TestOH(unittest.TestCase):
         alert.accept()
         self.assertEqual(alert_text, expected_text)
 
-
 if __name__ == '__main__':
-    """Please fill in desired output folder"""
-    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(
-        output='...'))
+    unittest.main()

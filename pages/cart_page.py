@@ -23,6 +23,9 @@ class Cartpage:
     def txt_product(self):
         title = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, Cart_Locators.product_btn)))
         return title
+    def txt_product_invisibility(self):
+        title = WebDriverWait(self.driver, 5).until(EC.invisibility_of_element_located((By.XPATH, Cart_Locators.product_btn)))
+        return title
     def txt_product_2(self):
         title = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, Cart_Locators.product_2_btn)))
         return title

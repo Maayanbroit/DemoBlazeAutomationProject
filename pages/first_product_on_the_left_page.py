@@ -2,6 +2,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from locators1.first_product_on_the_left_locators import Locators_product
+from time import sleep
+
 
 class Product:
 
@@ -18,3 +20,7 @@ class Product:
             EC.visibility_of_element_located((By.XPATH, Locators_product.add_to_cart)))
         return title
 
+    def click_add_to_cart(self):
+        WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH, Locators_product.add_to_cart))).click()
+        sleep(5)
