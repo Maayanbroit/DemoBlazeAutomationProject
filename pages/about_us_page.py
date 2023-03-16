@@ -2,7 +2,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from locators1.about_us_locators import About_As_Locators
+from locators.about_us_locators import About_As_Locators
 
 class About_As_page:
 

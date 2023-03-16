@@ -77,7 +77,7 @@ class TestOH(WebDriverSetup):
         external_title_text = external_title.text
         external_title.click()
         # Get the inner text of the product button element
-        inner_title = self.first_product_on_the_left_page.inner_txt_product_btn()
+        inner_title = self.product_page.inner_txt_product_btn()
         #Check if the external and inner titles are equal
         assert external_title_text == inner_title.text
         print(external_title_text ,'\n', inner_title.text)
@@ -87,7 +87,7 @@ class TestOH(WebDriverSetup):
         #get image source attribute
         external_image_src = external_image.get_attribute('src')
         external_image.click()
-        inner_image = self.first_product_on_the_left_page.inner_product_image()
+        inner_image = self.product_page.inner_product_image()
         inner_image_src = inner_image.get_attribute('src')
         # check if the external and inner image sources are equal
         self.assertEqual(external_image_src, inner_image_src)
@@ -103,7 +103,7 @@ class TestOH(WebDriverSetup):
         description = self.home_new_page.txt_description().text
         self.home_new_page.click_product_btn()
         sleep(10)
-        product_description = self.first_product_on_the_left_page.txt_product_description().text
+        product_description = self.product_page.txt_product_description().text
         self.assertEqual(description, product_description)
 
     def test_19_valid_previous_btn(self):
@@ -124,17 +124,17 @@ class TestOH(WebDriverSetup):
     def test_21_next_button_displayed_previous_not(self):
         self.scroll = self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         # check if next button is displayed and previous button not
-        is_next_btn_displayed = self.home_new_page.next_product_btn
-        is_previous_btn_displayed = self.home_new_page.previous_product_btn
+        is_next_btn_displayed = self.home_new_page.next_product_btn_id
+        is_previous_btn_displayed = self.home_new_page.previous_product_btn_id
         assert is_previous_btn_displayed == False and is_next_btn_displayed == True
 
     def test_22_previous_button_displayed_next_not(self):
         self.scroll = self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         # Click next button to go to the next image
-        is_next_btn_display = self.home_new_page.next_product_btn_click()
+        is_next_btn_display = self.home_new_page.next_product_btn_click_id()
         sleep(5)
-        is_previous_btn_displayed = self.home_new_page.previous_product_btn()
-        next_btn = self.home_new_page.next_product_btn()
+        is_previous_btn_displayed = self.home_new_page.previous_product_btn_id()
+        next_btn = self.home_new_page.next_product_btn_id()
         # Check if previous button is displayed and next button is not
         assert is_previous_btn_displayed == True and next_btn == False
 

@@ -3,7 +3,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from locators1.login_locators import LoginLocators
+from locators.login_locators import LoginLocators
 
 class LoginPage:
 

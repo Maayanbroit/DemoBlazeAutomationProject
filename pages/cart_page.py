@@ -2,7 +2,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from locators1.cart_locators import Cart_Locators
+from locators.cart_locators import Cart_Locators
 from time import sleep
 
 class Cartpage:
@@ -31,6 +31,10 @@ class Cartpage:
     def txt_product_2(self):
         title = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, Cart_Locators.product_2_btn)))
         return title
+    def total(self):
+        title = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, Cart_Locators.total))).is_displayed()
+        return title
+
     def txt_product_3(self):
         title = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, Cart_Locators.product_3_btn)))
         return title

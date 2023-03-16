@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from locators1.first_product_on_the_left_locators import Locators_product
+from locators.product_locators import Locators_product
 from time import sleep
 
 

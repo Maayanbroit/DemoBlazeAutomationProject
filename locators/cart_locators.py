@@ -13,10 +13,10 @@ class Cart_Locators:
     delete_btn = "/html/body/div[6]/div/div[1]/div/table/tbody/tr/td[4]/a"
     samsung_galaxy_s6 = "/html/body/div[5]/div/div[2]/div/div[1]/div/div/h4/a"
     price_in_cart = '/html/body/div[6]/div/div[1]/div/table/tbody/tr/td[3]'
-
     name_field = 'name'
     country_field = 'country'
     city_field = 'city'
     credit_card_field = 'card'
     month_field = 'month'
     year_field = 'year'
+    total = '/html/body/div[6]/div/div[2]'

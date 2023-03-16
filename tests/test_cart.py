@@ -10,28 +10,28 @@ from selenium.webdriver.common.action_chains import ActionChains
 class TestOH(WebDriverSetup):
 
     def test_40_add_prod_to_cart_valid(self):
-        txt_product_btn = self.home_new_page.txt_product_btn().text
-        self.home_new_page.click_product_btn()
-        self.first_product_on_the_left_page.click_add_to_cart()
+        txt_product_btn = self.home_page.txt_product_btn().text
+        self.home_page.click_product_btn()
+        self.product_page.click_add_to_cart()
         alert = self.driver.switch_to.alert
         alert.accept()
-        self.home_new_page.click_cart()
+        self.home_page.click_cart()
         title_in_cart = self.cart_page.txt_product().text
         self.assertEqual(txt_product_btn, title_in_cart)
 
     def test_41_add_3times_prod_to_cart_valid(self):
-        txt_product_btn_1 = self.home_new_page.txt_product_btn().text
-        self.home_new_page.click_product_btn()
-        self.first_product_on_the_left_page.click_add_to_cart()
+        txt_product_btn_1 = self.home_page.txt_product_btn().text
+        self.home_page.click_product_btn()
+        self.product_page.click_add_to_cart()
         alert = self.driver.switch_to.alert
         alert.accept()
-        self.first_product_on_the_left_page.click_add_to_cart()
+        self.product_page.click_add_to_cart()
         alert = self.driver.switch_to.alert
         alert.accept()
-        self.first_product_on_the_left_page.click_add_to_cart()
+        self.product_page.click_add_to_cart()
         alert = self.driver.switch_to.alert
         alert.accept()
-        self.home_new_page.click_cart()
+        self.home_page.click_cart()
         title_in_cart_1 = self.cart_page.txt_product().text
         self.assertEqual(txt_product_btn_1, title_in_cart_1)
 
@@ -42,30 +42,30 @@ class TestOH(WebDriverSetup):
         self.assertEqual(txt_product_btn_1, title_in_cart_3)
 
     def test_42_prod_add_popup_valid(self):
-        self.home_new_page.click_product_btn()
-        self.first_product_on_the_left_page.click_add_to_cart()
+        self.home_page.click_product_btn()
+        self.product_page.click_add_to_cart()
         alert = WebDriverWait(self.driver, 5).until(EC.alert_is_present())
         self.assertEqual(alert.text, "Product added")
         alert = self.driver.switch_to.alert
         alert.accept()
 
     def test_43_prod_price_valid(self):
-        left_corn_product_price = self.home_new_page.txt_product_price().text
-        self.home_new_page.click_product_btn()
-        self.first_product_on_the_left_page.click_add_to_cart()
+        left_corn_product_price = self.home_page.txt_product_price().text
+        self.home_page.click_product_btn()
+        self.product_page.click_add_to_cart()
         alert = self.driver.switch_to.alert
         alert.accept()
-        self.home_new_page.click_cart()
+        self.home_page.click_cart()
         price_in_cart = self.cart_page.txt_price_in_cart().text
         self.assertEqual(price_in_cart, left_corn_product_price)
 
     def test_44_del_prod_from_cart_valid(self):
-        left_corn_product = self.home_new_page.txt_product_btn().text
-        self.home_new_page.click_product_btn()
-        self.first_product_on_the_left_page.click_add_to_cart()
+        left_corn_product = self.home_page.txt_product_btn().text
+        self.home_page.click_product_btn()
+        self.product_page.click_add_to_cart()
         alert = self.driver.switch_to.alert
         alert.accept()
-        self.home_new_page.click_cart()
+        self.home_page.click_cart()
         title_in_cart = self.cart_page.txt_product().text
         self.assertEqual(left_corn_product, title_in_cart)
         self.cart_page.click_delete_btn()
@@ -84,7 +84,7 @@ class TestOH(WebDriverSetup):
         self.cart_page.click_cart_btn()
         # Click the delete button
         self.cart_page.click_delete_btn()
-        assert self.driver.find_element(By.XPATH, '/html/body/div[6]/div/div[2]').is_displayed()
+        assert self.cart_page.total()
 
     def test_46_place_order(self):
         # Click the cart button

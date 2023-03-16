@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from locators1.contact_locators import ContactLocators
+from locators.contact_locators import ContactLocators
 
 class Contactpage:
 

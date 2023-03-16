@@ -2,7 +2,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from locators1.sign_up_locators import Sign_Up_Locators
+from locators.sign_up_locators import Sign_Up_Locators
 import random
 import string
 
