@@ -54,17 +54,16 @@ class TestOH(WebDriverSetup):
     def test_64_login_close_button(self):
         self.login_page.click_log_in_btn()
         self.login_page.click_close_login()
-        sleep(3)
         assert WebDriverWait(self.driver, 5).until(EC.invisibility_of_element_located((By.XPATH, '//*[@id="logInModal"]/div/div')))
 
     def test_67_login_without_details(self):
         self.login_page.click_log_in_btn()
         self.login_page.click_login()
-        sleep(2)
         alert = Alert(self.driver)
         alert_text = alert.text
         expected_text = "Please fill out Username and Password."
-        sleep(2)
         alert.accept()
         self.assertEqual(alert_text, expected_text)
+
+
 

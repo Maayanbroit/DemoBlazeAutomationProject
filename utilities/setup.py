@@ -9,6 +9,7 @@ from pages.contact_page import Contactpage
 from pages.about_us_page import About_As_page
 from pages.login_page import LoginPage
 from pages.sign_up_page import Sign_Up_Page
+from pages.first_product_on_the_left_page import Product
 from selenium.webdriver.chrome.options import Options
 
 
@@ -31,6 +32,7 @@ class WebDriverSetup(unittest.TestCase):
             self.about_us_page = About_As_page(self.driver)
             self.cart_page = Cartpage(self.driver)
             self.sign_up_page = Sign_Up_Page(self.driver)
+            self.first_product_on_the_left_page = Product(self.driver)
 
             time.sleep(1)
 

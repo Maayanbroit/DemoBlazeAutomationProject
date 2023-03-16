@@ -28,3 +28,11 @@ class LoginPage:
 
     def click_logout(self):
         WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH,LoginLocators.Log_out_btn))).click()
+
+    def log_in_process(self):
+        self.click_log_in_btn()
+        self.set_username('Bdika')
+        self.set_password('123')
+        self.click_login()
+
+

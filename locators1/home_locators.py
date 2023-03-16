@@ -9,4 +9,7 @@ class Buttons_home:
     sign_up_btn = "/html/body/nav/div[1]/ul/li[8]/a"
     logo_btn = 'nava'
     #Our product for testing is the samsung s6 on the front page
-    product_btn = '//*[@id="tbodyid"]/div[1]/div/div/h4/a'
+    external_product_btn = '//*[@id="tbodyid"]/div[1]/div/div/h4/a'
+    external_image = '//*[@id="tbodyid"]/div[1]/div/a/img'
+    next_btn = 'next2'
+    previous_btn = 'prev2'
