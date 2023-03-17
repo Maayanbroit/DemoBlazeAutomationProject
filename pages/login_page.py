@@ -23,8 +23,10 @@ class LoginPage:
     def click_login(self):
         WebDriverWait(self.driver,10).until(EC.visibility_of_element_located((By.XPATH,LoginLocators.login_btn))).click()
 
-    def click_close_login(self):
-        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, LoginLocators.login_close_xpath))).click()
+    def login_close_btn(self):
+       close_btn = self.driver.find_element(By.XPATH, '//*[@id="logInModal"]/div/div/div[3]/button[1]')
+       return close_btn
+
 
     def click_logout(self):
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH,LoginLocators.Log_out_btn))).click()

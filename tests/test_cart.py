@@ -95,15 +95,15 @@ class TestOH(WebDriverSetup):
 
 
     def test_47_valid_order_without_login(self):
-        self.cart_page.click_product()
+        self.cart_page.click_samsung_6s()
         self.cart_page.click_add_cart()
         alert = WebDriverWait(self.driver, 5).until(EC.alert_is_present())
         alert.accept()
         self.cart_page.fill_place_order_fields()
-        assert self.driver.find_element(By.XPATH, '/html/body/div[9]').is_displayed()
+        assert self.cart_page.purchase_confirmation_popup()
 
     def test_48_purchase_button_disable(self):
-        self.cart_page.click_product()
+        self.cart_page.click_samsung_6s()
         self.cart_page.click_add_cart()
         alert = WebDriverWait(self.driver, 5).until(EC.alert_is_present())
         alert.accept()
@@ -113,23 +113,22 @@ class TestOH(WebDriverSetup):
 
     def test_49_empty_order_without_login(self):
         self.cart_page.fill_place_order_fields()
-        assert WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, '/html/body/div[9]'))) == False
+        assert self.cart_page.purchase_confirmation_popup() == False
+
 
     def test_50_valid_order_with_login(self):
         self.login_page.log_in_process()
         sleep(3)
-        self.cart_page.click_product()
+        self.cart_page.click_samsung_6s()
         self.cart_page.click_add_cart()
         alert = WebDriverWait(self.driver, 5).until(EC.alert_is_present())
         alert.accept()
         self.cart_page.fill_place_order_fields()
-        assert self.driver.find_element(By.XPATH, '/html/body/div[9]').is_displayed()
+        assert self.cart_page.purchase_confirmation_popup()
 
 
     def test_51_empty_order_with_login(self):
         self.login_page.log_in_process()
         sleep(3)
         self.cart_page.fill_place_order_fields()
-        assert WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, '/html/body/div[9]'))) == False
+        assert self.cart_page.purchase_confirmation_popup() == False

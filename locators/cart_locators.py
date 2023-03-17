@@ -20,3 +20,5 @@ class Cart_Locators:
     month_field = 'month'
     year_field = 'year'
     total = '/html/body/div[6]/div/div[2]'
+    purchase_success_popup = '/html/body/div[9]'
+    

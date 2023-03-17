@@ -15,6 +15,7 @@ class Homepage:
         title = WebDriverWait(self.driver, 5).until(
             EC.visibility_of_element_located((By.XPATH, Buttons_home.xpath_home_btn)))
         return title
+
     def txt_product_btn(self):
         title = WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, Buttons_home.product_btn)))
         return title
@@ -46,9 +47,7 @@ class Homepage:
         return image
 
     def next_product_btn_id(self):
-       # title = WebDriverWait(self.driver, 5).until(
-       #      EC.visibility_of_element_located((By.ID, Buttons_home.next_btn))).is_displayed()
-      title  = self.driver.find_element(By.ID, Buttons_home.next_btn_id).is_displayed()
+      title = self.driver.find_element(By.ID, Buttons_home.next_btn_id).is_displayed()
       return title
 
     def next_product_btn_click_id(self):

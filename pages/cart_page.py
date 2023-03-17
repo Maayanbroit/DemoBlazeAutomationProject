@@ -60,7 +60,6 @@ class Cartpage:
         WebDriverWait(self.driver, 5).until(
             EC.visibility_of_element_located((By.XPATH, Cart_Locators.samsung_galaxy_s6))).click()
 
-
     def fill_name(self, name):
         WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID, Cart_Locators.name_field))).send_keys(name)
 
@@ -89,4 +88,9 @@ class Cartpage:
         self.fill_month('5')
         self.fill_year('2030')
         self.click_purchase()
+
+
+    def purchase_confirmation_popup(self):
+       popup = self.driver.find_element(By.XPATH, Cart_Locators.purchase_success_popup).is_displayed()
+       return popup
 

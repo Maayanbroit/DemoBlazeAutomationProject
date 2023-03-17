@@ -65,8 +65,11 @@ class TestOH(WebDriverSetup):
 
     def test_64_login_close_button(self):
         self.login_page.click_log_in_btn()
-        self.login_page.click_close_login()
-        assert WebDriverWait(self.driver, 5).until(EC.invisibility_of_element_located((By.XPATH, '//*[@id="logInModal"]/div/div')))
+        sleep(2)
+        close_btn = self.login_page.login_close_btn()
+        close_btn.click()
+        sleep(2)
+        assert close_btn.is_displayed() == False
 
     def test_67_login_without_details(self):
         self.login_page.click_log_in_btn()

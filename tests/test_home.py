@@ -67,7 +67,7 @@ class TestOH(WebDriverSetup):
         assert self.driver.current_url == 'https://www.demoblaze.com/index.html'
 
     def test_14_redirect_to_view_product_page(self):
-        self.home_page.click_product()
+        self.cart_page.click_samsung_6s()
         # check if the current URL is the product page
         assert self.driver.current_url == 'https://www.demoblaze.com/prod.html?idp_=1'
 
@@ -78,9 +78,10 @@ class TestOH(WebDriverSetup):
         external_title.click()
         # Get the inner text of the product button element
         inner_title = self.product_page.inner_txt_product_btn()
+        inner_title_text = inner_title.text
         #Check if the external and inner titles are equal
-        assert external_title_text == inner_title.text
-        print(external_title_text ,'\n', inner_title.text)
+        assert external_title_text == inner_title_text
+        print(external_title_text ,'\n', inner_title_text)
 
     def test_16_product_image(self):
         external_image = self.home_page.external_product_image()
@@ -95,7 +96,7 @@ class TestOH(WebDriverSetup):
 
     def test_17_scroll_down_home_page(self):
         self.scroll = self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        sleep(5)
+        sleep(3)
         assert self.driver.execute_script("return window.scrollY") > 0, "Scrolling down the page not working"
 
 
