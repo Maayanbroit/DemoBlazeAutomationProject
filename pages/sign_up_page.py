@@ -48,3 +48,9 @@ class Sign_Up_Page:
                 x = random.choice(string.ascii_letters)
                 str1 = str1 + x
             return str1
+
+        #assert test 55:
+        def Sign_up_pop_up_close(self):
+            x = WebDriverWait(self.driver, 5).until(
+            EC.invisibility_of_element_located((By.XPATH, Sign_Up_Locators.Sign_up_pop_up)))
+            return x

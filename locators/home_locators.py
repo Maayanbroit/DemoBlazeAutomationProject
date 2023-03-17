@@ -22,3 +22,8 @@ class Buttons_home:
     external_image = '//*[@id="tbodyid"]/div[1]/div/a/img'
     next_btn_id = 'next2'
     previous_btn_id = 'prev2'
+
+    contact_pop_up = '/html/body/div[1]/div/div'
+    about_us_pop_up = "/html/body/div[4]/div/div"
+    login_pop_up = "/html/body/div[3]/div/div"
+    sign_up_pop_up = "/html/body/div[2]/div/div"

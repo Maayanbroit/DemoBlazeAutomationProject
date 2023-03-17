@@ -136,3 +136,18 @@ class Homepage:
     def next_btn_click(self):
         title = WebDriverWait(self.driver, 5).until(
             EC.visibility_of_element_located((By.XPATH, Buttons_home.next_btn))).click()
+
+
+    #assert tests 7-12:
+    def contact_pop_up(self):
+        x = self.driver.find_element(By.XPATH, Buttons_home.contact_pop_up).is_displayed()
+        return x
+    def about_us_pop_up(self):
+        x = self.driver.find_element(By.XPATH, Buttons_home.about_us_pop_up).is_displayed()
+        return x
+    def login_pop_up(self):
+        x = self.driver.find_element(By.XPATH, Buttons_home.login_pop_up).is_displayed()
+        return x
+    def sign_up_pop_up(self):
+        x = self.driver.find_element(By.XPATH, Buttons_home.sign_up_pop_up).is_displayed()
+        return x

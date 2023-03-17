@@ -31,8 +31,7 @@ class TestOH(WebDriverSetup):
         self.sign_up_page.click_sign_up()
         self.sign_up_page.click_sign_up_close()
         # Check if the Signup popup window closes
-        assert WebDriverWait(self.driver, 5).until(
-            EC.invisibility_of_element_located((By.XPATH, "/html/body/div[2]/div/div")))
+        assert self.sign_up_page.Sign_up_pop_up_close()
 
     def test_56_Sign_up_username_max_10_char(self):
         self.sign_up_page.click_sign_up()
