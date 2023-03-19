@@ -40,12 +40,12 @@ class TestOH(WebDriverSetup):
     def test_8_click_Contact_btn(self):
         self.home_page.click_contact()
         # Check if the contact popup is displayed
-        assert self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div").is_displayed()
+        assert self.home_page.contact_pop_up()
 
     def test_9_click_About_us_btn(self):
         self.home_page.click_about_us()
         # Check if the about us popup is displayed
-        assert self.driver.find_element(By.XPATH, "/html/body/div[4]/div/div").is_displayed()
+        assert self.home_page.about_us_pop_up()
 
     def test_10_click_Cart_bnt(self):
         self.home_page.click_cart()
@@ -55,12 +55,12 @@ class TestOH(WebDriverSetup):
     def test_11_click_Log_in_btn(self):
         self.home_page.click_login_btn()
         # Check if the about us popup is displayed
-        assert self.driver.find_element(By.XPATH, "/html/body/div[3]/div/div").is_displayed()
+        assert self.home_page.login_pop_up()
 
     def test_12_click_Sign_up_btn(self):
         self.home_page.click_signup()
         # Check if the about us popup is displayed
-        assert self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div").is_displayed()
+        assert self.home_page.sign_up_pop_up()
 
     def test_13_top_logo_redirect_home(self):
         self.home_page.click_logo()

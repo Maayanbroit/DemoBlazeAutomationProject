@@ -22,3 +22,10 @@ class About_As_page:
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, About_As_Locators.about_us_close_btn))).click()
         WebDriverWait(self.driver, 10)
 
+    #assert tests 38-39:
+    def video_enabled(self):
+        x = self.driver.find_element(By.XPATH, About_As_Locators.video_enabled).is_enabled()
+        return x
+    def about_us_pop_up_close(self):
+        x = WebDriverWait(self.driver, 5).until(EC.invisibility_of_element_located((By.XPATH, About_As_Locators.about_us_pop_up)))
+        return x
