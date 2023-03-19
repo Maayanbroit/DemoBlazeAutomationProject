@@ -90,3 +90,7 @@ class Cartpage:
         self.fill_year('2030')
         self.click_purchase()
 
+
+    def place_order_popup(self):
+        popup = self.driver.find_element(By.XPATH, Cart_Locators.place_order_popup).is_displayed()
+        return popup

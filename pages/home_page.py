@@ -136,3 +136,13 @@ class Homepage:
     def next_btn_click(self):
         title = WebDriverWait(self.driver, 5).until(
             EC.visibility_of_element_located((By.XPATH, Buttons_home.next_btn))).click()
+
+    def about_us_text(self):
+        text = WebDriverWait(self.driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH, Buttons_home.about_us_text))).is_displayed()
+        return text
+
+    def get_in_touch_text(self):
+        text = WebDriverWait(self.driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH, Buttons_home.get_in_touch_text))).is_displayed()
+        return text

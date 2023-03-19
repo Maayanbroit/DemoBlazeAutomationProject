@@ -84,6 +84,7 @@ class TestOH(WebDriverSetup):
         self.cart_page.click_cart_btn()
         # Click the delete button
         self.cart_page.click_delete_btn()
+        sleep(2)
         assert self.cart_page.total()
 
     def test_46_place_order(self):
@@ -91,7 +92,8 @@ class TestOH(WebDriverSetup):
         self.cart_page.click_cart_btn()
         # Click the place order button
         self.cart_page.click_place_order_btn()
-        assert WebDriverWait(self.driver, 5).until(EC.invisibility_of_element_located((By.XPATH, "/html/body/div[3]/div/div")))
+        assert self.cart_page.place_order_popup() == False
+
 
 
     def test_47_valid_order_without_login(self):

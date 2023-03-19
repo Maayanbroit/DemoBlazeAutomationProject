@@ -20,8 +20,7 @@ class TestOH(WebDriverSetup):
         self.login_page.set_password('tami4')
         # Click log in button
         self.login_page.click_login()
-        element = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID, "nameofuser")))
-        self.assertTrue(element)
+        assert self.login_page.welcome_displayed()
 
 
     def test_61_Log_in_invalid(self):
@@ -59,9 +58,10 @@ class TestOH(WebDriverSetup):
         self.login_page.set_password('tami4')
         # Click the log in button
         self.login_page.click_login()
+        sleep(3)
         # Click the logout button
         self.login_page.click_logout()
-        assert not self.driver.find_element(By.XPATH, '/html/body/nav/div[1]/ul/li[6]/a').is_displayed()
+        assert self.login_page.is_logged_out() == True
 
     def test_64_login_close_button(self):
         self.login_page.click_log_in_btn()
