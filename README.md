@@ -25,4 +25,4 @@ Contributing
 If you would like to contribute to this project, please fork the repository and submit a pull request.
 Credits
 
-This project was created by Maayan Broitman, Shiran Ohayon, Meshi Gilade and Tal Batat.
+This project was created by Maayan Broitman, Shiran Ohayon, Meshi Giladi and Tal Batat.
