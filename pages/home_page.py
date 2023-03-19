@@ -1,294 +1,163 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-# from locators.login_page_locators import LoginLocators
+from locators.home_locators import Buttons_home
+from time import sleep
 
 
-class LoginPage:
-
-    username_text = 'loginusername'
-    password_text = 'loginpassword'
-    login_xpath = '//*[@id="logInModal"]/div/div/div[3]/button[2]'
-    close_xpath = '//*[@id="logInModal"]/div/div/div[3]/button[1]'
+class Homepage:
 
     def __init__(self, driver):
         self.driver = driver
-    def set_username(self, username):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID,self.username_text))).send_keys(username)
-    def set_password(self, password):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID,self.password_text))).send_keys(password)
-    def click_login(self):
-        WebDriverWait(self.driver,5).until(EC.visibility_of_element_located((By.XPATH,self.login_xpath))).click()
-    def click_close_login(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH,self.close_xpath))).click()
 
-
-class Buttons:
-
-    xpath_home_btn = "/html/body/nav/div[1]/ul/li[1]/a"
-    xpath_contact_btn = "/html/body/nav/div[1]/ul/li[2]/a"
-    about_us_btn = "/html/body/nav/div[1]/ul/li[3]/a"
-    cart_btn = '//*[@id="cartur"]'
-    log_in_btn = "/html/body/nav/div[1]/ul/li[5]/a"
-    sign_up_btn = "/html/body/nav/div[1]/ul/li[8]/a"
-    logo_btn = 'nava'
-    #Our product for testing is the samsung s6 on the front page
-    product_btn = '//*[@id="tbodyid"]/div[1]/div/div/h4/a'
-    #In the product page/ samsung galaxy s6/ title
-    product_page_title = '//*[@id="tbodyid"]/h2'
-    add_cart_btn = '//*[@id="tbodyid"]/div[2]/div/a'
-    place_order_btn = '//*[@id="page-wrapper"]/div/div[2]/button'
-    purchase_btn = '//*[@id="orderModal"]/div/div/div[3]/button[2]'
-    sign_in_btn = "/html/body/nav/div[1]/ul/li[8]/a"
-    send_message_btn = "/html/body/div[1]/div/div/div[3]/button[2]"
-    play_video_btn = "/html/body/div[4]/div/div/div[2]/form/div/div/button"
-    about_us_close_btn = "/html/body/div[4]/div/div/div[3]/button"
-    sign_up_close_btn = "/html/body/div[2]/div/div/div[3]/button[1]"
-
-    def __init__(self,driver):
-        self.driver = driver
 
     def txt_home_btn(self):
         title = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, Buttons.xpath_home_btn)))
+            EC.visibility_of_element_located((By.XPATH, Buttons_home.xpath_home_btn)))
         return title
 
     def txt_product_btn(self):
-        title = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, Buttons.product_btn)))
+        title = WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, Buttons_home.product_btn)))
         return title
+
+
+    def external_txt_product_btn(self):
+        title = WebDriverWait(self.driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH, Buttons_home.external_product_btn)))
+        return title
+    def txt_product_price(self):
+        title = WebDriverWait(self.driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH, Buttons_home.product_price)))
+        return title
+
+    def previous_btn(self):
+        title = WebDriverWait(self.driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH, Buttons_home.previous_btn)))
+        return title
+
+    def next_btn(self):
+        title = WebDriverWait(self.driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH, Buttons_home.next_btn)))
+        return title
+
+
+    def external_product_image(self):
+        image = WebDriverWait(self.driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH, Buttons_home.external_image)))
+        return image
+
+    def next_product_btn_id(self):
+       # title = WebDriverWait(self.driver, 5).until(
+       #      EC.visibility_of_element_located((By.ID, Buttons_home.next_btn))).is_displayed()
+      title  = self.driver.find_element(By.ID, Buttons_home.next_btn_id).is_displayed()
+      return title
+
+    def next_product_btn_click_id(self):
+        WebDriverWait(self.driver, 5).until(
+            EC.visibility_of_element_located((By.ID, Buttons_home.next_btn_id))).click()
+
+    def previous_product_btn_id(self):
+       title = WebDriverWait(self.driver, 5).until(
+            EC.visibility_of_element_located((By.ID, Buttons_home.previous_btn_id))).is_displayed()
+       return title
 
     def txt_contact_btn(self):
         title = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, Buttons.xpath_contact_btn)))
+            EC.visibility_of_element_located((By.XPATH, Buttons_home.xpath_contact_btn)))
         return title
 
     def txt_about_us_btn(self):
         title = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, Buttons.about_us_btn)))
+            EC.visibility_of_element_located((By.XPATH, Buttons_home.about_us_btn)))
         return title
 
     def txt_cart_btn(self):
         title = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, Buttons.cart_btn)))
+            EC.visibility_of_element_located((By.XPATH, Buttons_home.cart_btn)))
         return title
 
     def txt_log_in_btn(self):
         title = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, Buttons.log_in_btn)))
+            EC.visibility_of_element_located((By.XPATH, Buttons_home.log_in_btn)))
         return title
 
     def txt_sign_up_btn(self):
-        title = WebDriverWait(self.driver, 5).until(
-            EC.visibility_of_element_located((By.XPATH, Buttons.sign_up_btn)))
+        title = WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH, Buttons_home.sign_up_btn)))
         return title
 
+    def txt_description(self):
+        title = WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH, Buttons_home.product_descreption)))
+        return title
 
     def click_home(self):
-        WebDriverWait(self.driver,5).until(EC.visibility_of_element_located((By.XPATH,self.xpath_home_btn))).click()
+        WebDriverWait(self.driver,5).until(EC.visibility_of_element_located((By.XPATH, Buttons_home.xpath_home_btn))).click()
+        WebDriverWait(self.driver, 5)
     def click_contact(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH,self.xpath_contact_btn))).click()
+        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, Buttons_home.xpath_contact_btn))).click()
+        sleep(2)
     def click_about_us(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH,self.about_us_btn))).click()
+        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, Buttons_home.about_us_btn))).click()
+        sleep(2)
     def click_cart(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH,self.cart_btn))).click()
+        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, Buttons_home.cart_btn))).click()
+        sleep(5)
     def click_login_btn(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH,self.log_in_btn))).click()
+        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, Buttons_home.log_in_btn))).click()
+        sleep(2)
     def click_signup(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH,self.sign_up_btn))).click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, Buttons_home.sign_up_btn))).click()
+        sleep(2)
     def click_logo(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID,self.logo_btn))).click()
-    def click_product(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.product_btn))).click()
-    def click_add_cart(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.add_cart_btn))).click()
-    def click_place_order(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.place_order_btn))).click()
-    def click_purchase(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.purchase_btn))).click()
-    def check_is_purchase_btn_enabled(self):
-        return WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.purchase_btn))).is_enabled()
+        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID, Buttons_home.logo_btn))).click()
 
-    def click_Contact(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.xpath_contact_btn))).click()
+    def click_image_bar_r_btn(self):
+        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, Buttons_home.image_bar_r_btn))).click()
 
-    def click_About_us(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.about_us_btn))).click()
+    def click_image_bar_l_btn(self):
+         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, Buttons_home.image_bar_l_btn))).click()
 
-    def click_Cart(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.cart_btn))).click()
+    def image_1(self):
+         image_1 = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, Buttons_home.image_1)))
+         return image_1
 
-    def click_Login(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.log_in_btn))).click()
+    def image_2 (self):
+        image_2 = WebDriverWait(self.driver, 10).until( EC.visibility_of_element_located((By.XPATH, Buttons_home.image_2)))
+        return image_2
 
-    def click_Sign_up(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.sign_in_btn))).click()
+    def image_3 (self):
+        image_3 = WebDriverWait(self.driver, 10).until( EC.visibility_of_element_located((By.XPATH, Buttons_home.image_3)))
+        return image_3
+    def click_product_btn(self):
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, Buttons_home.product_btn))).click()
+    def click_previous_btn(self):
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, Buttons_home.previous_btn))).click()
 
-    def click_send_message(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.send_message_btn))).click()
+    def next_btn_click(self):
+        title = WebDriverWait(self.driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH, Buttons_home.next_btn))).click()
 
-    def click_play_video(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.play_video_btn))).click()
+    def about_us_text(self):
+        text = WebDriverWait(self.driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH, Buttons_home.about_us_text))).is_displayed()
+        return text
 
-    def click_about_us_close(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.about_us_close_btn))).click()
+    def get_in_touch_text(self):
+        text = WebDriverWait(self.driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH, Buttons_home.get_in_touch_text))).is_displayed()
+        return text
 
-    def click_sign_up_close(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.sign_up_close_btn))).click()
-
-
-
-
-class ValidOrder:
-    name_field = 'name'
-    country_field = 'country'
-    city_field = 'city'
-    credit_card_field = 'card'
-    month_field = 'month'
-    year_field = 'year'
-
-    def __init__(self, driver):
-        self.driver = driver
-
-    def fill_name(self, name):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID, self.name_field))).send_keys(name)
-
-    def fill_country(self, country):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID, self.country_field))).send_keys(country)
-
-    def fill_city(self, city):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID, self.city_field))).send_keys(city)
-
-    def fill_card(self, card):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID, self.credit_card_field))).send_keys(card)
-
-    def fill_month(self, month):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID, self.month_field))).send_keys(month)
-    def fill_year(self, year):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID, self.year_field))).send_keys(year)
-    def click_image_r(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.image_bar_r_btn))).click()
-
-    def click_image_l(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.image_bar_l_btn))).click()
-
-
-class Footer:
-    # class attributes
-    about_us_text = '/html/body/div[6]/div/div[1]'
-    get_in_touch_text = '/html/body/div[6]/div/div[2]'
-
-    def __init__(self, driver):
-        self.driver = driver
-
-    def aboutus_text(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.about_us_text)))
-
-
-class Log_in:
-    Log_in_btn_above = "/html/body/nav/div[1]/ul/li[5]/a"
-    user_name = "/html/body/div[3]/div/div/div[2]/form/div[1]/input"
-    password = "/html/body/div[3]/div/div/div[2]/form/div[2]/input"
-    login_xpath = '/html/body/div[3]/div/div/div[3]/button[2]'
-    Log_out_btn = "/html/body/nav/div[1]/ul/li[6]/a"
-
-    def __init__(self, driver):
-        self.driver = driver
-
-    def click_log_in_btn(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.Log_in_btn_above))).click()
-    def set_username(self, username):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH,self.user_name))).send_keys(username)
-    def set_password(self, password):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH,self.password))).send_keys(password)
-    def click_login(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH,self.login_xpath))).click()
-    def click_logout(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH,self.Log_out_btn))).click()
-
-
-
-class Contact:
-      contact_btn = "/html/body/nav/div[1]/ul/li[2]/a"
-      email = "/html/body/div[1]/div/div/div[2]/form/div[1]/input"
-      name = "/html/body/div[1]/div/div/div[2]/form/div[2]/input"
-      message = "/html/body/div[1]/div/div/div[2]/form/div[3]/textarea"
-      send_message_btn = "/html/body/div[1]/div/div/div[3]/button[2]"
-      close_btn = "/html/body/div[1]/div/div/div[3]/button[1]"
-
-
-      def __init__(self, driver):
-          self.driver = driver
-
-      def click_contact_btn(self):
-          WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.contact_btn))).click()
-
-      def set_email(self, email):
-          WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.email))).send_keys(email)
-
-      def set_name(self, name):
-          WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.name))).send_keys(name)
-
-      def set_message(self, message):
-          WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.message))).send_keys(message)
-          return message
-
-      def click_send_message(self):
-          WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.send_message_btn))).click()
-
-
-      def click_close_btn(self):
-          WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.close_btn))).click()
-
-
-class Cart:
-      samsung_galaxy_s6 = "/html/body/div[5]/div/div[2]/div/div[1]/div/div/h4/a"
-      add_to_cart = "/html/body/div[5]/div/div[2]/div[2]/div/a"
-      cart_btn = "/html/body/nav/div/div/ul/li[4]/a"
-      delete_btn = "/html/body/div[6]/div/div[1]/div/table/tbody/tr/td[4]/a"
-      Total = "/html/body/div[6]/div/div[2]"
-      place_order_btn = "/html/body/div[6]/div/div[2]/button"
-      Place_order = "/html/body/div[3]/div/div"
-
-      def __init__(self, driver):
-          self.driver = driver
-
-      def click_samsung_6s(self):
-          WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.samsung_galaxy_s6))).click()
-
-      def click_add_btn(self):
-          WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.add_to_cart))).click()
-
-      def click_cart_btn(self):
-          WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, "/html/body/nav/div/div/ul/li[4]/a"))).click()
-
-      def click_delete_btn(self):
-          WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.delete_btn))).click()
-
-      def click_place_order_btn(self):
-          WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, "/html/body/div[6]/div/div[2]/button"))).click()
-
-
-class Sign_up:
-
-    user_name_text = "sign-username"
-    password_text = "sign-password"
-    sign_up_xpath = "/html/body/div[2]/div/div/div[3]/button[2]"
-
-    def __init__(self,driver):
-        self.driver = driver
-
-    def set_username(self, username):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID, self.user_name_text))).send_keys(
-            username)
-        return username
-
-    def set_password(self, password):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID, self.password_text))).send_keys(
-            password)
-
-    def click_sign_us_in_pop(self):
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, self.sign_up_xpath))).click()
-
-
-
+    #assert tests 7-12:
+    def contact_pop_up(self):
+        x = self.driver.find_element(By.XPATH, Buttons_home.contact_pop_up).is_displayed()
+        return x
+    def about_us_pop_up(self):
+        x = self.driver.find_element(By.XPATH, Buttons_home.about_us_pop_up).is_displayed()
+        return x
+    def login_pop_up(self):
+        x = self.driver.find_element(By.XPATH, Buttons_home.login_pop_up).is_displayed()
+        return x
+    def sign_up_pop_up(self):
+        x = self.driver.find_element(By.XPATH, Buttons_home.sign_up_pop_up).is_displayed()
+        return x
