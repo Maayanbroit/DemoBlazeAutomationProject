@@ -61,7 +61,7 @@ class TestOH(WebDriverSetup):
         sleep(3)
         # Click the logout button
         self.login_page.click_logout()
-        assert self.login_page.is_logged_out() == True
+        assert self.login_page.logout_not_displayed()
 
     def test_64_login_close_button(self):
         self.login_page.click_log_in_btn()
