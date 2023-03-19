@@ -27,3 +27,5 @@ class Buttons_home:
     about_us_pop_up = "/html/body/div[4]/div/div"
     login_pop_up = "/html/body/div[3]/div/div"
     sign_up_pop_up = "/html/body/div[2]/div/div"
+    about_us_text = "/html/body/div[6]/div/div[1]"
+    get_in_touch_text = "/html/body/div[6]/div/div[2]"

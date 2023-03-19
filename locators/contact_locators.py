@@ -7,3 +7,5 @@ class ContactLocators:
     message = "/html/body/div[1]/div/div/div[2]/form/div[3]/textarea"
     send_message_btn = "/html/body/div[1]/div/div/div[3]/button[2]"
     close_btn = "/html/body/div[1]/div/div/div[3]/button[1]"
+    contact_pop_up = '/html/body/div[1]/div/div'
+    close_new_message_btn = "/html/body/div[1]/div/div/div[3]/button[1]"

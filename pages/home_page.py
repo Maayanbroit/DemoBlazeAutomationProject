@@ -47,7 +47,9 @@ class Homepage:
         return image
 
     def next_product_btn_id(self):
-      title = self.driver.find_element(By.ID, Buttons_home.next_btn_id).is_displayed()
+       # title = WebDriverWait(self.driver, 5).until(
+       #      EC.visibility_of_element_located((By.ID, Buttons_home.next_btn))).is_displayed()
+      title  = self.driver.find_element(By.ID, Buttons_home.next_btn_id).is_displayed()
       return title
 
     def next_product_btn_click_id(self):
@@ -136,6 +138,15 @@ class Homepage:
         title = WebDriverWait(self.driver, 5).until(
             EC.visibility_of_element_located((By.XPATH, Buttons_home.next_btn))).click()
 
+    def about_us_text(self):
+        text = WebDriverWait(self.driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH, Buttons_home.about_us_text))).is_displayed()
+        return text
+
+    def get_in_touch_text(self):
+        text = WebDriverWait(self.driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH, Buttons_home.get_in_touch_text))).is_displayed()
+        return text
 
     #assert tests 7-12:
     def contact_pop_up(self):

@@ -162,10 +162,10 @@ class TestOH(WebDriverSetup):
         # Scroll down the page to find the text
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         # Check if the 'about us' text is displayed
-        assert self.driver.find_element(By.XPATH, '/html/body/div[6]/div/div[1]').is_displayed()
+        assert self.home_page.about_us_text()
 
     def test_30_get_in_touch_text(self):
         # Scroll down the page to find the text
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         # Check if the 'get in touch' text is displayed
-        assert self.driver.find_element(By.XPATH, '/html/body/div[6]/div/div[2]').is_displayed()
+        assert self.home_page.get_in_touch_text()

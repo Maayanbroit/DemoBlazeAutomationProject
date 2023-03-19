@@ -2,6 +2,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from locators.contact_locators import ContactLocators
+import random
+import string
 
 class Contactpage:
 
@@ -22,9 +24,26 @@ class Contactpage:
           WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, ContactLocators.message))).send_keys(message)
           return message
 
+      def forloop_message_invalid(self):
+          str1 = ""
+          for i in range(257):
+              x = random.choice(string.ascii_letters)
+              str1 = str1 + x
+          return str1
+
       def click_send_message(self):
           WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, ContactLocators.send_message_btn))).click()
           WebDriverWait(self.driver, 5)
 
       def click_close_btn(self):
-          WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, ContactLocators.close_btn))).click()
+         WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, ContactLocators.close_new_message_btn))).click()
+         # if (close_btn.isEnabled()):
+         #     close_btn.click()
+         # else:
+         #  print ("Disable")
+
+
+      def contact_popup_not_displayed(self):
+         popup = WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located((By.XPATH, ContactLocators.contact_pop_up)))
+         return popup
+
