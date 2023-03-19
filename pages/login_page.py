@@ -31,15 +31,11 @@ class LoginPage:
     def click_logout(self):
          WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH,LoginLocators.log_out_btn))).click()
 
-    def is_logged_out(self):
-        try:
-            username_input = self.driver.find_element(By.NAME ,LoginLocators.login_username)
-            password_input = self.driver.find_element(By.NAME, LoginLocators.login_password)
-            logout_button = self.driver.find_element(By.NAME, LoginLocators.log_out_btn).click()
-        except:
-            return True
-        else:
-            return False
+    def logout_not_displayed(self):
+        text = WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located((By.XPATH, LoginLocators.log_out_btn)))
+        return text
+
+
 
     def welcome_displayed(self):
        welcome = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, LoginLocators.welcome_user_id))).is_displayed()
