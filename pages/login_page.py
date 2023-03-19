@@ -29,7 +29,7 @@ class LoginPage:
 
 
     def click_logout(self):
-         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH,LoginLocators.log_out_btn))).click()
+         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, LoginLocators.log_out_btn))).click()
 
     def logout_not_displayed(self):
         text = WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located((By.XPATH, LoginLocators.log_out_btn)))
