@@ -102,7 +102,7 @@ class Homepage:
         sleep(2)
     def click_cart(self):
         WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, Buttons_home.cart_btn))).click()
-        sleep(2)
+        sleep(5)
     def click_login_btn(self):
         WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, Buttons_home.log_in_btn))).click()
         sleep(2)

@@ -13,7 +13,7 @@ class TestOH(WebDriverSetup):
 
     def test_2_valid_text_contact_btn(self):
         button = self.home_page.txt_contact_btn()
-        assert button.text == 'Contact us', f"Unexpected text: {button.text}"
+        assert button.text == 'Contact', f"Unexpected text: {button.text}"
 
     def test_3_valid_text_about_us_btn(self):
         button = self.home_page.txt_about_us_btn()
